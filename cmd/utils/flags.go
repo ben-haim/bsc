@@ -181,7 +181,7 @@ var (
 		Value:    ethconfig.Defaults.NetworkId,
 		Category: flags.EthCategory,
 	}
-	BSCMainnetFlag = &cli.BoolFlag{
+	OTCMainnetFlag = &cli.BoolFlag{
 		Name:     "mainnet",
 		Usage:    "BSC mainnet",
 		Category: flags.EthCategory,
@@ -1176,7 +1176,7 @@ var (
 		ChapelFlag,
 	}
 	// NetworkFlags is the flag group of all built-in supported networks.
-	NetworkFlags = append([]cli.Flag{BSCMainnetFlag}, TestnetFlags...)
+	NetworkFlags = append([]cli.Flag{OTCMainnetFlag}, TestnetFlags...)
 
 	// DatabaseFlags is the flag group of all database flags.
 	DatabaseFlags = []cli.Flag{
@@ -1891,7 +1891,7 @@ func CheckExclusive(ctx *cli.Context, args ...interface{}) {
 // SetEthConfig applies eth-related command line flags to the config.
 func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	// Avoid conflicting network flags
-	CheckExclusive(ctx, BSCMainnetFlag, DeveloperFlag)
+	CheckExclusive(ctx, OTCMainnetFlag, DeveloperFlag)
 	CheckExclusive(ctx, DeveloperFlag, ExternalSignerFlag) // Can't use both ephemeral unlocked and external signer
 
 	// Set configurations from CLI flags
@@ -2099,7 +2099,7 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	}
 	// Override any default configs for hard coded networks.
 	switch {
-	case ctx.Bool(BSCMainnetFlag.Name):
+	case ctx.Bool(OTCMainnetFlag.Name):
 		if !ctx.IsSet(NetworkIdFlag.Name) {
 			cfg.NetworkId = 56
 		}
@@ -2578,7 +2578,7 @@ func DialRPCWithHeaders(endpoint string, headers []string) (*rpc.Client, error) 
 func MakeGenesis(ctx *cli.Context) *core.Genesis {
 	var genesis *core.Genesis
 	switch {
-	case ctx.Bool(BSCMainnetFlag.Name):
+	case ctx.Bool(OTCMainnetFlag.Name):
 		genesis = core.DefaultBSCGenesisBlock()
 	case ctx.Bool(ChapelFlag.Name):
 		genesis = core.DefaultChapelGenesisBlock()

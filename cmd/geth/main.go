@@ -325,7 +325,7 @@ func prepare(ctx *cli.Context) {
 	// If we're running a known preset, log it for convenience.
 	switch {
 	case ctx.IsSet(utils.ChapelFlag.Name):
-		log.Info("Starting BSC on Chapel testnet...")
+		log.Info("Starting OTC on Chapel testnet...")
 
 	case ctx.IsSet(utils.DeveloperFlag.Name):
 		log.Info("Starting Geth in ephemeral dev mode...")
@@ -462,7 +462,7 @@ func startNode(ctx *cli.Context, stack *node.Node, backend ethapi.Backend, isCon
 		}
 
 		if !ok {
-			utils.Fatalf("Ethereum service not running")
+			utils.Fatalf("OTC service not running")
 		}
 		// Set the gas price to the limits from the CLI and start mining
 		gasprice := flags.GlobalBig(ctx, utils.MinerGasPriceFlag.Name)

@@ -50,7 +50,7 @@ var FullNodeGPO = gasprice.Config{
 // Defaults contains default settings for use on the BSC main net.
 var Defaults = Config{
 	SyncMode:           downloader.SnapSync,
-	NetworkId:          0, // enable auto configuration of networkID == chainID
+	NetworkId:          175, // enable auto configuration of networkID == chainID
 	TxLookupLimit:      2350000,
 	TransactionHistory: 2350000,
 	StateHistory:       params.FullImmutabilityThreshold,

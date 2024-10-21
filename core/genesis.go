@@ -265,7 +265,7 @@ func SetupGenesisBlockWithOverride(db ethdb.Database, triedb *triedb.Database, g
 	stored := rawdb.ReadCanonicalHash(db, 0)
 	if (stored == common.Hash{}) {
 		if genesis == nil {
-			log.Info("Writing default BSC mainnet genesis block")
+			log.Info("Writing default Θ mainnet genesis block")
 			genesis = DefaultBSCGenesisBlock()
 		} else {
 			log.Info("Writing custom genesis block")
